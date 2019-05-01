@@ -1,24 +1,34 @@
 #include <iostream>
 #include <string>
+#include <cctype>
 #include "linkedlist.cpp"
 #include <fstream>
+#include <list>
+#include <iterator>
 using namespace std;
 
 void readFile(linkedlist & list, string & file) {
-ifstream read(file);
-while(!read.eof()){
-file >>num;
-node *temp = new node();
-temp->data = num;
-temp->next = NULL;
-head = temp;
+	ifstream read(file);
+	int num = 0;
 
-}
 
+	 std::list<int> mylist;
+
+	while (!read.eof()) {
+		read >> num;
+		list.addToFront(num);
+
+
+	}
+	mylist.sort(list);
 
 }
 
 int main() {
+	linkedlist l;
+	string fileName = "list.txt";
+	readFile(l, fileName);
 
-    return 0;
+
+	system("pause");
 }
