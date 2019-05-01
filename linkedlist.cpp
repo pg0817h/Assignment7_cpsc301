@@ -3,8 +3,7 @@
 #include <fstream>
 linkedlist::linkedlist() {
 	head = NULL;
-	node *temp = new node();
-
+	
 
 }
 
@@ -14,23 +13,11 @@ linkedlist::~linkedlist() {
 
 int linkedlist::count() {
 	// RECURSIVE
-	int num = 0;
-	node *temp = new node();
-	ifstream read("list.txt");
-	while (!read.eof()) {
-		read >> num;
-		addToFront(num);
-	}
-	int countN = 0;
-
-	if (temp->next == nullptr) {
+	returnData(head);
+	if (head->next = nullptr) {
 		return 0;
 	}
-	countN++;
-	count();
-
-	return countN;
-
+	return 0;
 }
 
 void linkedlist::addToFront(int n) {
@@ -51,31 +38,41 @@ double linkedlist::average() {
 
 int linkedlist::sum() {
 	// RECURSIVE
-	int num = 0;
-	node *temp = new node();
-	ifstream read("list.txt");
-	while (!read.eof()) {
-		read >> num;
-		addToFront(num);
-	}
-	int total = 0;
-
-
-	if (temp->next =nullptr) {
+	
+	returnData(head);
+	if (head->next == nullptr) {
 		return 0;
 	}
-	total += temp->data;
-	temp->next;
-
-
-	return sum();
-
+	
+	return 0;
 }
 
 void linkedlist::writeInorder(string & file) {
-
+	
 }
 
 void linkedlist::writeReversed(string & file) {
 	// RECURSIVE
+}
+
+int linkedlist::returnData(node *temp) {
+	readData(temp);
+	if (temp->next == nullptr) {
+		return 0;
+	}
+		returnData(temp->next);
+		return temp->data;
+}
+
+void linkedlist::readData(node *temp) {
+	ifstream read("list.txt");
+	
+	int num;
+	while (!read.eof()) {
+		read >> num;
+		addToFront(num);
+
+	}
+	read.close();
+
 }
