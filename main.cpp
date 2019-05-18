@@ -1,34 +1,60 @@
 #include <iostream>
 #include <string>
-#include <cctype>
+
 #include "linkedlist.cpp"
 #include <fstream>
 #include <list>
 #include <iterator>
 using namespace std;
+list<int> myList;
+
+
+
+
 
 void readFile(linkedlist & list, string & file) {
-	ifstream read(file);
+	ifstream read;
+
+	read.open(file);
 	int num = 0;
 
 
-	 std::list<int> mylist;
 
+if(read.is_open()){
+	read >>num;
 	while (!read.eof()) {
-		read >> num;
+
+		//cout << num << " " ;
+
 		list.addToFront(num);
-
-
+		read >> num;
 	}
-	mylist.sort(list);
+}
+
+read.close();
+
 
 }
 
+void printList(list <int> aList){
+  list<int>::iterator it;
+  for(it = aList.begin(); it != aList.end(); it++){
+    cout << *it << " ";
+
+  }
+  cout << '\n';
+
+}
 int main() {
 	linkedlist l;
 	string fileName = "list.txt";
 	readFile(l, fileName);
+	l.print();
+	cout << endl;
+	cout << endl;
+cout << l.FindSmallest();
 
-
-	system("pause");
+cout << endl;
+l.print();
+	return 0;
 }

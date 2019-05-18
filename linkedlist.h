@@ -23,8 +23,16 @@ public:
 	void addToFront(int n);
 	double average(); // uses sum and count functions
 	void writeInorder(string & file);
-	void writeReversed(string & file);
+	void writeReversed();
+	void writeReversed(node *temp);
 	int returnData(node *temp);
 	void readData(node *temp);
+	int sum(node* node);
+	void print();
+	int count(node* temp);
+	int FindSmallest(node* temp);
+	int FindSmallest();
+
+	
 };
 #endif // end linkedlist.h

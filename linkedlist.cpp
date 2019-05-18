@@ -1,31 +1,48 @@
 #include "linkedlist.h"
 #include <list>
 #include <fstream>
+#include <iostream>
 linkedlist::linkedlist() {
 	head = NULL;
-	
+
 
 }
 
 linkedlist::~linkedlist() {
 	// RECURSIVE
+	delete head;
 }
 
 int linkedlist::count() {
 	// RECURSIVE
-	returnData(head);
-	if (head->next = nullptr) {
+node *temp1 = head;
+return count(temp1);
+}
+int linkedlist::count(node *temp){
+	if(temp==NULL){
 		return 0;
 	}
-	return 0;
+
+	return count(temp->next)+1;
 }
-
 void linkedlist::addToFront(int n) {
-
 	node *temp = new node();
 	temp->data = n;
 	temp->next = NULL;
+	node* current;
+if(head == NULL || head->data >= temp->data ){
+	temp->next = head;
 	head = temp;
+}
+else {
+	current = head;
+	while(current->next!=NULL && current->next->data < temp->data){
+		current = current->next;
+	}
+	temp->next = current->next;
+	current->next = temp;
+}
+
 }
 
 double linkedlist::average() {
@@ -38,41 +55,65 @@ double linkedlist::average() {
 
 int linkedlist::sum() {
 	// RECURSIVE
-	
-	returnData(head);
-	if (head->next == nullptr) {
-		return 0;
-	}
-	
-	return 0;
+node *head1 = head;
+	return sum(head1);
+}
+
+int linkedlist::sum(node* node){
+  if(node == NULL){
+    return 0;
+  }
+
+
+
+
+  return node->data+sum(node->next);
 }
 
 void linkedlist::writeInorder(string & file) {
-	
+
 }
 
-void linkedlist::writeReversed(string & file) {
+void linkedlist::writeReversed(node *head1) {
 	// RECURSIVE
+if(head1 == NULL){
+		return;
+	}
+
+writeReversed(head1->next);
+cout << head1->data << " ";
+
+}
+void linkedlist::writeReversed(){
+node* head1 = head;
+writeReversed(head1);
 }
 
-int linkedlist::returnData(node *temp) {
-	readData(temp);
-	if (temp->next == nullptr) {
-		return 0;
+
+void linkedlist::print(){
+	node *head2 = head;
+	while(head2 !=NULL){
+		cout << head2->data << " ";
+		head2 = head2->next;
 	}
-		returnData(temp->next);
-		return temp->data;
 }
 
-void linkedlist::readData(node *temp) {
-	ifstream read("list.txt");
-	
-	int num;
-	while (!read.eof()) {
-		read >> num;
-		addToFront(num);
+int linkedlist::FindSmallest(node *temp){
+if(temp ->next == NULL){
+	return temp->data;
+}
 
-	}
-	read.close();
+if(temp->data < FindSmallest(temp->next)){
 
+	return temp->data;
+}
+
+
+return FindSmallest(temp->next);
+}
+
+int linkedlist::FindSmallest(){
+	node *head1 = head;
+
+return FindSmallest(head1);
 }
